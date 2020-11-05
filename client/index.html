@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Page App (Vanilla JS)</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+</head>
+
+<body>
+
+    <nav>
+        <div id="navbar">
+            <div id="logo">
+            </div>
+            <div id="links">
+                <a href="/" class="nav__link" data-link>Dashboard</a>
+                <a href="/page" class="nav__link" data-link>Page</a>
+                <a href="/random" class="nav__link" data-link>Random</a>
+            </div>
+
+            <div class="mobile-btn" onclick="myFunction()" >
+                <a id="menu-btn">Menu</a>
+            </div>
+
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-menu">
+        <ul class="mobile-links">
+            <li class="nav-list"> <a href="/" class="nav__link" data-link>Dashboard</a> </li>
+            <li class="nav-list"> <a href="/page" class="nav__link" data-link>Page</a></li>
+            <li class="nav-list"> <a href="/random" class="nav__link" data-link>Random</a> </li>
+
+        </ul>
+    </div>
+
+    <div id="app"></div>
+    <script> src = "/static/js/views/dashboard.js"</script>
+    <script> src = "/static/js/views/page.js"</script>
+    <script> src = "/static/js/views/random.js"</script>
+    <script type="module" src="/static/js/index.js"></script>
+
+    <script>
+     const myFunction = () => {
+    console.log('test');
+    var x = document.getElementById("mobile-menu");
+    if (x.style.display === "none" || !x.style.display) {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+    </script>
+</body>
+
+</html>
