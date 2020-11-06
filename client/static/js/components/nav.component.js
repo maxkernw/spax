@@ -16,7 +16,7 @@ export class NavComponent extends HTMLElement {
 
         this.attachShadow({ mode: 'open' });
 
-        this.shadowRoot.innerHTML = `
+        this.shadowRoot.innerHTML = /*html*/`
         <style>
           ${this.style``}
         </style>

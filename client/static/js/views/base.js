@@ -61,6 +61,7 @@ export default class extends HTMLElement {
     <div class="container">
         <p>${this.text}</p>
     </div>
+    <snackbar-component></snackbar-component>
     `
     connectedCallback() {
         this.paragraph.addEventListener('click', this.click);
