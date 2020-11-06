@@ -5,7 +5,7 @@ export class Dashboard extends Base {
         super('Dashboard');
     }
     static name = 'dashboard-element'
-    static selector = `<${this.name}></${this.name}>`
+    static selector = `<${this.name} class="${this.name}"></${this.name}>`
     
 };
 customElements.define(Dashboard.name, Dashboard)

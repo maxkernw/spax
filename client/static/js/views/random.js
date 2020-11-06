@@ -7,7 +7,7 @@ export class Random extends Base {
         super('Random');
     }
     static name = "random-element"
-    static selector = `<${this.name}></${this.name}>`
+    static selector = `<${this.name} class="${this.name}"></${this.name}>`
 
 };
 

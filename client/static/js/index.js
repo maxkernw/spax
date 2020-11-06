@@ -33,8 +33,20 @@ const router = async () => {
     }
 
     const view = match.route.view;
+    const app = document.querySelector('#app')
+    // app.style.transform = `translateX(${app.offsetWidth}px)`
 
-    document.querySelector("#app").innerHTML = view.selector;;
+    const component = document.querySelector(`.${view.name}`);
+
+    app.style.marginLeft = '200%';
+
+    setTimeout(() => {
+        app.innerHTML = view.selector;
+        app.style.marginLeft = 0;
+    }, 500)
+
+
+
 };
 
 window.addEventListener("popstate", router);
