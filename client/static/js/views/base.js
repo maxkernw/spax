@@ -3,7 +3,6 @@ export default class extends HTMLElement {
         super();
         this.title = title;
         this.init();
-
     }
     init = _ => {
         this.text = this.title;
@@ -20,7 +19,7 @@ export default class extends HTMLElement {
         `;
 
         this.paragraph = this.shadowRoot.querySelector('p');
-        this.div = this.shadowRoot.querySelector('.test');
+        this.div = this.shadowRoot.querySelector('.container');
         this.click = this.click.bind(this);
     }
 
@@ -41,13 +40,13 @@ export default class extends HTMLElement {
             padding:0;
             margin: 0;
             text-transform: uppercase;
-            text-decoration: overline;
+            text-decoration:${Math.random() > .5 ? 'overline' : `underline`};
             cursor: pointer;
             user-select: none;
             font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif; 
 
         }
-        .test {
+        .container {
             display:grid;
             justify-content: center;
             align-items: center;
@@ -58,8 +57,8 @@ export default class extends HTMLElement {
         }
     `
 
-    html = _ => `
-    <div class="test">
+    html = _ => /*html*/`
+    <div class="container">
         <p>${this.text}</p>
     </div>
     `
