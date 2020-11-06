@@ -8,6 +8,7 @@ export class Random extends Base {
     }
     static name = "random-element"
     static selector = `<${this.name} class="${this.name}"></${this.name}>`
+    static route = '/random';
 
 };
 

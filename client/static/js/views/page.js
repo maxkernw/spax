@@ -8,6 +8,6 @@ export class Page extends Base {
 
     static name = "page-element"
     static selector = `<${this.name} class="${this.name}" ></${this.name}>`
-
+    static route = '/page'
 };
 customElements.define(Page.name, Page)

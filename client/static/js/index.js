@@ -2,56 +2,32 @@
 import { Dashboard } from "./views/dashboard.js";
 import { Page } from "./views/page.js";
 import { Random } from './views/random.js';
-const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
 const navigateTo = url => {
     history.pushState(null, null, url);
     router();
 };
 
+const routes = [
+    { path: Dashboard.route, view: Dashboard },
+    { path: Page.route, view: Page },
+    { path: Random.route, view: Random },
+];
+
 const router = async () => {
-    const routes = [
-        { path: "/", view: Dashboard },
-        { path: "/page", view: Page },
-        { path: "/random", view: Random },
-    ];
+   
 
-    const potentialMatches = routes.map(route =>
-        ({
-            route: route,
-            result: location.pathname.match(pathToRegex(route.path))
-        })
-    );
 
-    const match = potentialMatches.find(potentialMatch => potentialMatch.result !== null);
+    const { view } = routes.find(x => location.pathname === x.view.route) || routes[0];
 
-    if (!match) {
-        match = {
-            route: routes[0],
-            result: [location.pathname]
-        };
-    }
-
-    const view = match.route.view;
     const app = document.querySelector('#app')
-    // app.style.transform = `translateX(${app.offsetWidth}px)`
 
-    const component = document.querySelector(`.${view.name}`);
-
-    app.style.marginLeft = '200%';
-
-    setTimeout(() => {
-        app.innerHTML = view.selector;
-        app.style.marginLeft = 0;
-    }, 500)
-
-
+    transition(app, view);
 
 };
-
 window.addEventListener("popstate", router);
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", _ => {
     document.body.addEventListener("click", e => {
         if (e.target.matches("[data-link]")) {
             e.preventDefault();
@@ -61,3 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     router();
 });
+
+const transition = (app, view) => {
+    app.style.marginLeft = '200%';
+    setTimeout(() => {
+        app.innerHTML = view.selector;
+        app.style.marginLeft = 0;
+    }, 400);
+}
