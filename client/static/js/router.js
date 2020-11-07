@@ -10,7 +10,6 @@ export const navigateTo = url => {
     }
 };
 
-
 export const routes = [
     { path: Dashboard.route, view: Dashboard },
     { path: Page.route, view: Page },
@@ -30,6 +29,7 @@ const transition = (app, view) => {
     app.style.marginLeft = '200%';
     setTimeout(() => {
         app.innerHTML = view.selector;
+      
         app.style.marginLeft = 0;
     }, 400);
 }

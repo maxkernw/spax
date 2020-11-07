@@ -11,7 +11,6 @@ export class NavComponent extends HTMLElement {
 
     }
     init = _ => {
-        console.log('test')
         this.text = this.title;
 
         this.attachShadow({ mode: 'open' });
@@ -30,7 +29,6 @@ export class NavComponent extends HTMLElement {
         this.openNavBtn = this.shadowRoot.querySelector('.openNavBtn');
         this.closeBtn = this.shadowRoot.querySelector('.closeBtn');
 
-        console.log(this.links);
         this.click = this.click.bind(this);
         this.openNav = this.openNav.bind(this);
         this.closeNav = this.closeNav.bind(this);
@@ -159,13 +157,11 @@ export class NavComponent extends HTMLElement {
     </nav>
     `
 
-    openNav() {
-        this.sideNav.style.width = "250px";
-    }
+    openNav = _ => this.sideNav.style.width = "250px";
 
-    closeNav() {
-        this.sideNav.style.width = "0";
-    }
+
+    closeNav = _ => this.sideNav.style.width = "0";
+
     connectedCallback() {
         for (const link of this.links) {
             link.addEventListener('click', this.click);
