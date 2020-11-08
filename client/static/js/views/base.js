@@ -26,7 +26,9 @@ export default class extends HTMLElement {
     click = _ => {
         const textColor = this.random();
         this.paragraph.style.color = textColor;
-        this.div.style.backgroundColor = this.random();
+        this.div.style.background = `linear-gradient(-45deg, ${this.random()}, ${this.random()}, ${this.random()}, ${this.random()})`
+        this.div.style.backgroundSize = "400% 400%";
+        this.div.style.animation = "gradient 15s ease infinite"
     };
 
     random = _ => `#${Math.floor(Math.random() * 16777215).toString(16)}`
@@ -53,7 +55,21 @@ export default class extends HTMLElement {
             width: 100%;
             height: 100vh;
             transition: all .5s;
-            background-color: ${this.random()}
+            background: linear-gradient(-45deg, ${this.random()}, ${this.random()}, ${this.random()}, ${this.random()});
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
     `
 
@@ -63,10 +79,10 @@ export default class extends HTMLElement {
     </div>
     `
     connectedCallback() {
-        this.paragraph.addEventListener('click', this.click);
+        this.div.addEventListener('click', this.click);
     }
 
     disconnectedCallback() {
-        this.paragraph.removeEventListener('click', this.click);
+        this.div.removeEventListener('click', this.click);
     }
 };
