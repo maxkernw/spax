@@ -2,7 +2,7 @@ export class Grid extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.number = 1;
+        this.max = 100;
         this.shadowRoot.innerHTML = `
         <style>
           ${this.style()}
@@ -14,6 +14,7 @@ export class Grid extends HTMLElement {
         this.inputRange = this.shadowRoot.querySelector('input');
         this.gridContainer = this.shadowRoot.querySelector('.grid-container');
         this.range = this.range.bind(this);
+        this.elements = this.elements.bind(this);
 
     }
     static name = 'grid-element'
@@ -38,27 +39,37 @@ export class Grid extends HTMLElement {
         width: 100%;
         height: 100vh;
         grid-gap: 1rem;
-        grid-template-columns: repeat( auto-fit, minmax(125px, 1fr) );
+        grid-template-columns: repeat( auto-fit, minmax(120px, 1fr) );
     }
 `
 
     html = _ => /*html*/`
     <div class="container">
 
-        <input min="0" max="12" value="0" type="range"></input>
-        <div class="grid-container"></div>
+        <input min="0" max="${this.max}" value="0" type="range"></input>
+        <div class="grid-container">
+            ${this.elements()}
+        </div>
     </div>
 `
+    elements = _ => {
+        let tmp = ''
+        for (let x = 0; x < this.max; x++) {
+            tmp += `<div class="ele-${x}" style="box-shadow:-3px 1px 10px #0000005e; display:none;"><random-element></random-element></div>`
+        }
+        return tmp;
+    }
     range = e => {
         console.log(e.target.value)
-        this.gridContainer.innerHTML = '';
-        this.number = e.target.value;
-        // this.gridContainer.style.gridTemplateColumns = `repeat(${this.number}, auto)`
-        for(let x = 0; x < e.target.value; x++) {
-            
+        for (let x = 0; x < this.max; x++) {
+            if (x < e.target.value) {
+                this.gridContainer.querySelector(`.ele-${x}`).style.display = "block"
+            }
+            else {
+                this.gridContainer.querySelector(`.ele-${x}`).style.display = "none"
+            }
 
-            this.gridContainer.innerHTML = this.gridContainer.innerHTML + `<div style="box-shadow:-3px 1px 10px #0000005e;"><random-element></random-element></div>`
-        } 
+        }
     }
 
     connectedCallback() {
