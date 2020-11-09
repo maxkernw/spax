@@ -13,9 +13,7 @@ export default class extends HTMLElement {
         <style>
           ${this.style()}
         </style>
-        <div>
             ${this.html()}
-        </div>
         `;
 
         this.paragraph = this.shadowRoot.querySelector('p');
@@ -36,7 +34,7 @@ export default class extends HTMLElement {
     style = _ => `
         p {
             color: ${this.random()};
-            font-size: 200%;
+            font-size:100%;
             transition: all .5s;
             width: 100%;
             padding:0;
@@ -53,7 +51,7 @@ export default class extends HTMLElement {
             justify-content: center;
             align-items: center;
             width: 100%;
-            height: 100vh;
+            height:100vh;
             transition: all .5s;
             background: linear-gradient(-45deg, ${this.random()}, ${this.random()}, ${this.random()}, ${this.random()});
             background-size: 400% 400%;

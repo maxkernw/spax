@@ -2,6 +2,7 @@
 import { Dashboard } from "./views/dashboard.js";
 import { Page } from "./views/page.js";
 import { Random } from './views/random.js';
+import { Grid } from './views/grid.js';
 
 export const navigateTo = url => {
     if (location.href !== url) {
@@ -14,6 +15,7 @@ export const routes = [
     { path: Dashboard.route, view: Dashboard },
     { path: Page.route, view: Page },
     { path: Random.route, view: Random },
+    { path: Grid.route, view: Grid },
 ];
 
 export const router = async () => {
