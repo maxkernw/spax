@@ -1,10 +1,10 @@
-import { router } from './router.js';
-import { NavComponent } from './components/nav.component.js'
+import { router } from './router/router.js';
+import { registerElements } from './registry.js';
 
-window.addEventListener("popstate", router);
+window.addEventListener('popstate', router);
 
-document.addEventListener("DOMContentLoaded", _ => {
-
+document.addEventListener('DOMContentLoaded', _ => {
+    registerElements();
     router();
 });
 

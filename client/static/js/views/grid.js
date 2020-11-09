@@ -18,7 +18,7 @@ export class Grid extends HTMLElement {
 
     }
     static name = 'grid-element'
-    static selector = `<${this.name} class="${this.name}"></${this.name}>`
+    static selector = `<${this.name} class='${this.name}'></${this.name}>`
     static route = '/grid'
 
     style = _ => `
@@ -44,10 +44,10 @@ export class Grid extends HTMLElement {
 `
 
     html = _ => /*html*/`
-    <div class="container">
+    <div class='container'>
 
-        <input min="0" max="${this.max}" value="0" type="range"></input>
-        <div class="grid-container">
+        <input min='0' max='${this.max}' value='0' type='range'></input>
+        <div class='grid-container'>
             ${this.elements()}
         </div>
     </div>
@@ -55,7 +55,7 @@ export class Grid extends HTMLElement {
     elements = _ => {
         let tmp = ''
         for (let x = 0; x < this.max; x++) {
-            tmp += `<div class="ele-${x}" style="box-shadow:-3px 1px 10px #0000005e; display:none;"><random-element></random-element></div>`
+            tmp += `<div class='ele-${x}' style='box-shadow:-3px 1px 10px #0000005e; display:none;'><random-element></random-element></div>`
         }
         return tmp;
     }
@@ -63,10 +63,10 @@ export class Grid extends HTMLElement {
         console.log(e.target.value)
         for (let x = 0; x < this.max; x++) {
             if (x < e.target.value) {
-                this.gridContainer.querySelector(`.ele-${x}`).style.display = "block"
+                this.gridContainer.querySelector(`.ele-${x}`).style.display = 'block'
             }
             else {
-                this.gridContainer.querySelector(`.ele-${x}`).style.display = "none"
+                this.gridContainer.querySelector(`.ele-${x}`).style.display = 'none'
             }
 
         }
@@ -80,4 +80,3 @@ export class Grid extends HTMLElement {
         this.inputRange.removeEventListener('input', this.range);
     }
 };
-customElements.define(Grid.name, Grid)

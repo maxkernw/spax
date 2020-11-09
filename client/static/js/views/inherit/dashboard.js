@@ -1,4 +1,5 @@
-import Base from './base.js';
+import Base from './base.component.js';
+
 export class Dashboard extends Base {
 
     constructor() {
@@ -8,4 +9,3 @@ export class Dashboard extends Base {
     static selector = `<${this.name} class="${this.name}"></${this.name}>`
     static route = '/'
 };
-customElements.define(Dashboard.name, Dashboard)
